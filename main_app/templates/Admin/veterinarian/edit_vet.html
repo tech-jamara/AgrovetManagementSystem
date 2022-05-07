@@ -1,0 +1,321 @@
+{% extends 'Admin/base_admin.html' %}{% load crispy_forms_tags %} {% block content %}
+
+<div class="content-wrapper agro-form">
+   <section class="content">
+      <div class="row">
+         <div class="col-md-12 px-4">
+            <div class="card card-info">
+               <div class="card-header">
+                  <h5 class="card-title">{{title}}</h5>
+               </div>
+
+               <form method="POST" style="font-size: 13px" class="px-3 py-2" id="myform" action="{{ action_path }}"
+                  enctype="multipart/form-data">
+                  {% csrf_token %} {% include 'Admin/alert_popup.html'%}
+
+                  <div class="card-body form-deco">
+                     <h5>User Information</h5>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <label>Username</label>
+                              <div class="input-group input-user">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                 </span>
+                                 <input type="text" class="form-control" name="username" placeholder="Username"
+                                    id="id_username" value="{{ staff.admin.username }} " />
+                              </div>
+                              <div id="username_error" class="error hidden"> Please Enter the username
+                              </div>
+                           </div>
+                        </div>
+
+                        <!-- <div class=" col-md-6">
+                           <div class="form-group">
+                              <label>Password</label>
+                              <div class="input-group">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-key"></i>
+                                    </span>
+                                 </span>
+                                 <input type="password" class="form-control" name="password" placeholder="Password" value="{{ staff.admin.password}} "/>
+                              </div>
+                           </div>
+                        </div> -->
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>First Name</label>
+                              <div class="input-group">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-user"></i>
+                                    </span>
+                                 </span>
+                                 <input type="text" class="form-control " id="first_name" name="first_name"
+                                    placeholder="First Name" value="{{staff.admin.first_name }}" />
+                              </div>
+                              <div id="firstname_error" class="error hidden"> Please Enter the firstname
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>Last Name</label>
+                              <div class="input-group">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-user"></i>
+                                    </span>
+                                 </span>
+                                 <input type="text" class="form-control" id='last_name' name="last_name"
+                                    placeholder=" Last Name" value="{{ staff.admin.last_name }} " />
+                              </div>
+                              <div id="lastname_error" class="error hidden"> Please Enter the lastname
+
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>Email address</label>
+                              <div class="input-group input-email">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-envelope"></i>
+                                    </span>
+                                 </span>
+                                 <input type="email" class="form-control" name="email" placeholder=" Enter email"
+                                    id="id_email" value="{{ staff.admin.email }}" />
+                              </div>
+                              <div id="email_error" class="error hidden"> Please Enter the email
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{form}}
+                        </div>
+                     </div>
+                     <hr />
+                     <h5>Contact Information</h5>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>Mobile</label>
+                              <div class="input-group">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-phone"></i>
+                                    </span>
+                                 </span>
+                                 <input type="text" class="form-control" id="myform_phone" name="mobile"
+                                    placeholder="Phone Number" value="{{staff.mobile}}" />
+                              </div>
+                              <div id="phone_error2" class="error hidden"> Please enter a phone number
+                              </div>
+                              <div id="phone_error" class="error hidden"> Please enter a valid phone
+                                 number : 2547xxxxxxxx
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>Address</label>
+                              <div class="input-group">
+                                 <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <i class="fas fa-location"></i>
+                                    </span>
+                                 </span>
+                                 <input type="text" class="form-control" name="address" placeholder="Address"
+                                    value="{{staff.address }}" id="address" />
+
+                              </div>
+                              <div id="address_error" class="error hidden"> Please enter an Address
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+
+                  <div class="">
+                     <input type="button" class="btn btn-sm btn-info ml-4 mb-4 px-3 mysubmit-me" data-toggle="modal"
+                        data-target=".bd-example-modal-sm" value="Submit" />
+                  </div>
+                  {% include 'Admin/submit_btn.html'%}
+
+               </form>
+
+            </div>
+         </div>
+      </div>
+   </section>
+
+</div>
+
+
+<style>
+   .error {
+      color: red;
+      size: 80%
+   }
+
+   .hidden {
+      display: none
+   }
+</style>
+
+{% endblock %}
+{% block myjs2 %}
+
+<script>
+   $(document).ready(function () {
+      //phone number vlidation using Regex
+      function validatePhoneNumber(input_str) {
+         var re = /^(2547)([0-9|7])(\d){7}$/; //Kenya Safaricom 
+
+         return re.test(input_str);
+      }
+      function validateForm(event) {
+         var phone = document.getElementById('myform_phone').value;
+         if (!validatePhoneNumber(phone)) {
+
+            document.getElementById('phone_error').classList.remove('hidden');
+
+         } else {
+            document.getElementById('phone_error').classList.add('hidden');
+            return false
+         }
+         event.preventDefault();
+      }
+      document.getElementById('myform').addEventListener('submit', validateForm);
+
+      //check if mobile field is emplty
+      function CheckPhoneValidation(event) {
+         var phone = document.getElementById('myform_phone').value;
+         var username = document.getElementById('id_username').value;
+         var email = document.getElementById('id_email').value;
+         var first_name = document.getElementById('first_name').value;
+         var last_name = document.getElementById('last_name').value;
+         var address = document.getElementById('address').value;
+
+
+
+         if (phone == '') {
+
+            document.getElementById('phone_error2').classList.remove('hidden');
+         }
+         else if (username == '') {
+            document.getElementById('username_error').classList.remove('hidden')
+
+         }
+         else if (email == '') {
+            document.getElementById('email_error').classList.remove('hidden')
+
+         }
+
+         else if (address == '') {
+            document.getElementById('address_error').classList.remove('hidden')
+
+         }
+         else if (first_name == '') {
+            document.getElementById('firstname_error').classList.remove('hidden')
+
+         }
+         else if (last_name == '') {
+            document.getElementById('lastname_error').classList.remove('hidden')
+
+         }
+
+         else {
+            document.getElementById('phone_error2').classList.add('hidden');
+            document.getElementById('username_error').classList.add('hidden');
+            document.getElementById('email_error').classList.add('hidden');
+            document.getElementById('firstname_error').classList.add('hidden');
+            document.getElementById('lastname_error').classList.add('hidden');
+            document.getElementById('address_error').classList.add('hidden');
+
+
+            return false
+
+         }
+         event.preventDefault();
+      }
+      document.getElementById('myform').addEventListener('submit', CheckPhoneValidation);
+
+      // keyup event will be triggered when user leaves keyboard
+      $("#id_email").keyup(function () {
+         var email = $(this).val();
+
+         if (email != "") {
+            $.ajax({
+               url: "{% url 'check_email_exist' %}",
+               type: 'POST',
+               data: { email: email }
+            })
+               .done(function (response) {
+                  //console.log(response);
+
+                  if (response == "True") {
+                     $(".email_error").remove();
+                     $("<span class='email_error' style='color: red; padding: 5px; font-weight: 500;'> Email Not Available. </span>").insertAfter(".input-email")
+                  }
+                  else {
+                     $(".email_error").remove();
+                     $("<span class='email_error' style='color: green; padding: 5px; font-weight: 500;'> Email Available. </span>").insertAfter(".input-email")
+                  }
+               })
+
+               .fail(function () {
+                  console.log("Failed");
+               })
+         }
+         else {
+            $(".email_error").remove();
+         }
+
+      })
+
+      $("#id_username").keyup(function () {
+         var username = $(this).val();
+
+         if (username != "") {
+            $.ajax({
+               url: "{% url 'check_username_exist' %}",
+               type: 'POST',
+               data: { username: username }
+            })
+               .done(function (response) {
+                  if (response == "True") {
+                     $(".username_error").remove();
+                     $("<span class='username_error' style='color: red; padding: 5px; font-weight: 500;'> Username Not Available. </span>").insertAfter(".input-user")
+                  }
+                  else {
+                     $(".username_error").remove();
+                     $("<span class='username_error' style='color: green; padding: 5px; font-weight: 500;'> Username Available. </span>").insertAfter(".input-user")
+                  }
+               })
+
+               .fail(function () {
+                  console.log("Failed");
+               })
+         }
+         else {
+            $(".username_error").remove();
+         }
+
+      })
+   })
+</script>
+{% endblock myjs2%}

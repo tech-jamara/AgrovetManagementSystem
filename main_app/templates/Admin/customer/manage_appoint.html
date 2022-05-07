@@ -1,0 +1,140 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+<div class="content-wrapper">
+    <section class="content manage-content">
+        {% include 'Admin/alert_popup.html'%}
+
+        <div class="form-group">
+            <div class="col-12  m-auto">
+                <div class="row oyaah">
+
+                    <div class="col-md-12 rr">
+                        <div class="card card-primary sc">
+                            <div class="card-header">
+                                <h5 class="card-title">APPOINTMENTS</h5>
+                                <div class="card-tools d-flex">
+                                    <div></div>
+
+                                    <a class="add-manager"> </a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table" id="plist">
+                            <thead>
+
+                                <tr>
+                                    <th>No</th>
+                                    <th>Username</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stock in staffs %}
+
+                                <tr class="hov">
+                                    <td>
+                                        <div class="inner-td"> #{{stock.id}}
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="inner-td"> {{stock.customerName}}
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="inner-td my-de" style="max-width: 350px;"> {{stock.reason}}
+                                        </div>
+
+                                    </td>
+                                    {%if stock.status%}
+                                    <td>
+                                        <div class="inner-td"><span class="labelprimary2">Confirmed</span></div>
+                                    </td>
+                                    {% else %}
+                                    <td>
+                                        <div class="inner-td"><span class="labelsuccess2">Pending</span></div>
+                                    </td>
+                                    {% endif %}
+                                    <td>
+                                        <div class="inner-td"> {{stock.appointmentDate}}
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+                                        <div class="manage-btn">
+
+                                            <div class="dropdown dropleft edit-table-me">
+                                                <button class="btn btn-sm btn-primary dropdown-toggle btn-manage mt-1"
+                                                    type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                            fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24"></rect>
+                                                            <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                            <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                            <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                                        </g>
+                                                    </svg>
+                                                </button>
+
+                                                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item py-2"
+                                                        href="{% url 'approve-appoint' stock.id %}">
+                                                        <i class="fa fa-check-circle-o pr-2" aria-hidden="true"></i>
+
+                                                        Approve</a>
+                                                    <a href="{% url 'delete-appoint1' stock.id %}"
+                                                        class="dropdown-item   py-2"> <i class="fa fa-trash-o pr-2"
+                                                            aria-hidden="true"></i>
+                                                        Delete</a>
+
+                                                    <a class="dropdown-item py-2"
+                                                        href="{% url 'view-appoint'  stock.id %}"> <i
+                                                            class="fa fa-eye pr-2" aria-hidden="true"></i>
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% include 'Admin/delete_staff.html'%}
+                                    </td>
+
+
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <a href="{% url 'add-stock21' %}">
+                        <p class="plus"><span class="material-icons-sharp"> add </span>
+
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+
+<style>
+    tr {
+        border-spacing: 0 8px !important;
+        -webkit-border-horizontal-spacing: 0px !important;
+        -webkit-border-vertical-spacing: 8px !important;
+    }
+</style>
+<script>
+
+</script>
+{% endblock %}
+</div>

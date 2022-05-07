@@ -1,0 +1,111 @@
+{% extends 'veterinarian/base_vet.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper agro-form">
+    <div class="row">
+        <div class="col-md-12 px-4">
+
+            <div class="card card-info  px-3 py-2 " style="border-radius: 20px;">
+                <div class="card-header">
+                    <h5>PURCAHSE A STOCK</h5>
+                </div>
+                <li class="list-group-item border-0 d-flex p-2 mb-2 mt-3 bg-gray-100 justify-content-between ">
+
+                    <div class="d-flex flex-column">
+                        <span class="mb-2 text-xs font-weight-bold">Company Name: <span
+                                class="text-dark font-weight-light ms-sm-2">{{supplier.name}}</span></span>
+                        <span class="mb-2 text-xs font-weight-bold ">Email Address: <span
+                                class="text-dark ms-sm-2 font-weight-light  ">{{supplier.email}}</span></span>
+                        <span class="text-xs mb-2 font-weight-bold">Phone Number: <span
+                                class="text-dark ms-sm-2 font-weight-light">{{supplier.phone}}</span></span>
+                        <span class="text-xs font-weight-bold">Address: <span
+                                class="text-dark ms-sm-2 font-weight-light">{{supplier.address}}</span></span>
+
+                        <div>
+                            <button type="button" class="btn btn-sm btn-info  py-1"
+                                style="width: 70px;margin-top:15px;background:rgb(255, 255, 255); border:1px solid rgb(197, 142, 241);color:black">Email</button>
+                            <button type="button" class="btn btn-sm btn-info ml-2 py-1 "
+                                style="width: 70px;margin-top:15px;background:rgb(255, 255, 255); border:1px solid rgb(196, 142, 247); color:black">Phone</button>
+                        </div>
+
+                    </div>
+                    <div class=" text-end">
+
+                        <img src="https://demos.creative-tim.com/soft-ui-dashboard/assets/img/bruce-mars.jpg" alt=""
+                            width="230" height="150" style="border-radius: 10px;">
+                    </div>
+                </li>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="row">
+        <div class="col-md-12 px-4">
+            <div class="card card-info" style="border-radius: 10px;">
+
+                <form method="post" class="panel panel-default px-3 py-2 ">
+
+                    {% csrf_token %}
+                    <div class="card-header">
+                        <div class="panel-heading panel-heading-text">Purchase a Product </div>
+                    </div>
+
+                    <div id="stockitem" class="p-2 mt-4">
+                        <div class=" panel-body">
+                            <div class="row form-row">
+                                <div class="form-group col-md-4">
+                                    {{ form.stock.errors }}
+                                    <label class="panel-body-text">Stock:</label>
+                                    {{ form.stock }}
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="panel-body-text">Price per item{Ksh):</label>
+                                    {{ form.perprice }}
+                                </div>
+                                <div class="form-group col-md-2">
+                                    {{ form.quantity.errors }}
+                                    <label class="panel-body-text">Quantity:</label>
+                                    {{ form.quantity }}
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="panel-body-text">Price(Ksh):</label>
+                                    <input type="text" style="border: none;font-weight:800"
+                                        class="textinput form-control totalprice" value="0.00" disabled required>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <input type="button" class="btn btn-sm px-3  py-2 btn-info ml-2 mb-4 mysubmit-me"
+                        data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    {% include 'veterinarian/submit_btn.html'%}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+</script>
+</div>
+
+
+
+{% endblock content %}

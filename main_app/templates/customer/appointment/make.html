@@ -1,0 +1,80 @@
+{% extends 'customer/base_cust.html' %} {% load crispy_forms_tags %}
+{% block content %}
+<div class="content-wrapper agro-form">
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          {% include 'customer/alert_popup.html'%}
+  
+          <div class="card card-info">
+            <div class="card-header">
+              <h5 class="card-title">Make  An Appointment</h5>
+            </div>
+  
+            <form method="POST" style="font-size:13px;" class='px-3 py-2' action="{{ action_path }}"
+            enctype="multipart/form-data">
+              {% csrf_token %}
+  
+             
+
+                  <div class="card-body form-deco custom-form1">
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              {{form.reason|as_crispy_field}}
+                          </div>
+                      </div>
+                   
+                  </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{form.description|as_crispy_field}}
+                            </div>
+                        </div>
+                     
+                    </div>
+                    <!-- <div class="row">
+                           <div class="col-md-12">
+                            <div class="form-group">
+                              {{form.pic|as_crispy_field}}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              {{form.address|as_crispy_field}}
+                          </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                       <div class="form-group">
+                         {{form.date_to|as_crispy_field}}
+                        
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      {{form.appointmentTime|as_crispy_field}}
+                      <p class="pl-1" style="margin-bottom: 0;margin-top:0;">Vet available from 9:00AM to 5:00PM</p>
+
+                    </div>
+                </div>
+               </div>
+               
+                    <hr>
+                </div>
+                <div class="">
+                    <input type="submit" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                      value="Submit form">
+  
+                </div>
+             
+          </form>
+        </div>
+      </div>
+    </section>
+</div>
+{% endblock %}

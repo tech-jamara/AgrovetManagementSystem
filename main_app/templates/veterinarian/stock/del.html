@@ -1,0 +1,42 @@
+{% extends 'veterinarian/base_vet.html' %}
+{% block content %}
+
+
+<div class="content-wrapper">
+    <div id="myModal" class="">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header flex-column">
+                    <div class="icon-box">
+                        <i><span class="material-icons-sharp">
+                                close
+                            </span></i>
+                    </div>
+                    <h4 class="modal-title w-100">Are you sure?</h4>
+
+                </div>
+                <div class="modal-body delete-popping">
+                    <p>Do you really want to delete the <span>{{role}}</span>
+                        from records? This process cannot be undone.</p>
+                </div>
+                <form method="post">
+
+                    {% csrf_token %}
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Yes Delete</button>
+
+                        <a href="" class=""><button type="button" class="btn btn-secondary">Cancel</button>
+                        </a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'veterinarian/delete.html'%}
+
+
+
+{% endblock content %}

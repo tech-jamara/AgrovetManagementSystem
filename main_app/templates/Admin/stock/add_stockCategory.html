@@ -1,0 +1,129 @@
+{% extends 'Admin/base_admin.html' %}{% load crispy_forms_tags %} {% block content %}
+<div class="content-wrapper agro-form">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        {% include 'Admin/alert_popup.html'%}
+
+        <div class="card card-info">
+          <div class="card-header">
+            <h5 class="card-title">Add Agrovet Category</h5>
+          </div>
+
+          <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+            {% csrf_token %}
+
+            <div class="form-group">
+              <div class="input-group input-email ">
+                <span class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fa fa-plus "></i>
+
+                  </span>
+                </span>
+
+                {{form}}
+
+              </div>
+            </div>
+
+        </div>
+        <input type="submit" class="btn  btn-sm btn-info ml-3  px-4 mysubmit-me">
+        </form>
+      </div>
+
+    </div>
+    <div class="row mt-4">
+      <div class="col-12  m-auto">
+        <div class="row oyaah">
+
+          <div class="col-md-12 rr">
+
+            <table class="table" id="plist">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Category</th>
+                  <th>Added On</th>
+                  <th>Updated On</th>
+
+                  <th>Action</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for staff2 in category %}
+
+                <tr class="hov">
+                  <td>
+                    <div class="inner-td">#{{staff2.id}}</div>
+                  </td>
+
+                  <td class="">
+                    <div class="inner-td">
+                      {{staff2.name}}
+
+                    </div>
+
+                  </td>
+                  <td class="">
+                    <div class="inner-td">
+                      {{staff2.created_at}}
+
+                    </div>
+
+                  </td>
+                  <td class="">
+                    <div class="inner-td">
+                      {{staff2.updated_at}}
+
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="manage-btn">
+
+                      <div class="dropdown dropleft edit-table-me">
+                        <button class="btn btn-sm btn-primary dropdown-toggle btn-manage mt-1" type="button"
+                          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <rect x="0" y="0" width="24" height="24"></rect>
+                              <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                              <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                              <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                            </g>
+                          </svg>
+                        </button>
+
+                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="{% url 'edit-stock-category1' staff2.id %}">Edit</a>
+                          <a href="{% url 'delete-stock-category1' staff2.id %}" class="dropdown-item">Delete</a>
+
+                          <a class="dropdown-item" href="#">View</a>
+                        </div>
+                      </div>
+                    </div>
+                    {% include 'Admin/delete_staff.html'%}
+
+          </div>
+          </td>
+
+          </tr>
+          {% endfor %}
+          </tbody>
+
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+</div>
+
+</section>
+
+</div>
+
+{% endblock %}

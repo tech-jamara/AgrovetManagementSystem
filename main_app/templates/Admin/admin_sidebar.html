@@ -1,0 +1,212 @@
+<aside class="main-sidebar mymain-sidebar sidebar-light-primary elevation-4 noPrint">
+  <!-- Brand Logo -->
+  <div class="myownnav">
+    <a href="#" class="brand-link logo py-4">
+      <img
+        src="https://assets.website-files.com/5f186b75b647cf7c841cecae/5f24ae572480e11d05e46dbd_webclip-farm-template.svg"
+        alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+      <span class="brand-text">
+        <h2>AGR<span class="danger">OFLY</span></h2>
+      </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{% url 'dashboard' %}" class="nav-link mynav-link active2">
+              <span class="material-icons-sharp nav-icon"> grid_view </span>
+
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+              <span class="material-icons-sharp"> supervisor_account </span>
+              <p>
+                Staff
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'add-vet1' %}" class="nav-link">
+                    <p>Add Veterinarian</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'manage-vet1' %}" class="nav-link">
+                    <p>Manage Veterinarian</p>
+                  </a>
+                </li>
+
+              </div>
+            </ul>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+              <span class="material-icons-sharp">
+                people
+              </span>
+              <p>
+                Customer
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'manage-customer1' %}" class="nav-link">
+                    <p>Manage Customer</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'manage-appoint' %}" class="nav-link">
+                    <p>Manage Appoinments</p>
+                  </a>
+                </li>
+
+              </div>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+              <span class="material-icons-sharp">
+                inventory
+              </span>
+              <p>
+                Inventory
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'add-stock-category1' %}" class="nav-link">
+                    <p>Add Stock Category</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'add-stock21' %}" class="nav-link">
+                    <p>Add Stock</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{% url 'manage-stock1' %}" class="nav-link">
+                    <p>Manage Stock</p>
+                  </a>
+                </li>
+
+
+              </div>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+              <span class="material-icons-sharp">
+                people
+              </span>
+              <p>
+                Supplier
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'add-supplier1' %}" class="nav-link">
+                    <p>Add Supplier</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'manage-supplier1' %}" class="nav-link">
+                    <p>Manage Supplier</p>
+                  </a>
+                </li>
+
+              </div>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+
+              <span class="material-icons-sharp">
+                shopping_cart
+              </span>
+              <p>
+                Purchases
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'select-supplier1' %}" class="nav-link">
+                    <p>Add Purchase</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'view-purchase1' %}" class="nav-link">
+                    <p>Manage Purchase</p>
+                  </a>
+                </li>
+
+              </div>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link mynav-link">
+              <span class="material-icons-sharp">
+                point_of_sale
+              </span>
+              <p>
+                Sales
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <style></style>
+            <ul class="nav nav-treeview">
+              <div class="yoo" dyu>
+                <li class="nav-item">
+                  <a href="{% url 'add-sale1' %}" class="nav-link">
+                    <p>New Sale</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'manage-sale1' %}" class="nav-link">
+                    <p>Manage Sales</p>
+                  </a>
+                </li>
+
+              </div>
+            </ul>
+          </li>
+
+
+        </ul>
+      </nav>
+    </div>
+
+    <div class="log-out">
+      <span class="material-icons-sharp text-light"> logout </span>
+      <span class="brand-text">
+        <p>Log Out</p>
+      </span>
+    </div>
+  </div>
+</aside>

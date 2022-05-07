@@ -1,0 +1,153 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+<div class="content-wrapper">
+   <section class="content manage-content">
+      <!-- alert -->
+      {% include 'Admin/alert_popup.html'%}
+      <div class="form-group">
+         <div class="col-12">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="card card-primary sc">
+                     <!-- header -->
+                     <div class="card-header">
+                        <h5>MANAGE PURCAHSES</h5>
+                        <div class="card-tools d-flex">
+                           <div></div>
+                           <a class="add-manager"> </a>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- table -->
+                  <table class="table" id="plist">
+                     <thead>
+                        <tr>
+                           <th>#</th>
+                           <th>Date Purchased</th>
+                           <th>Supplier</th>
+
+                           <th>Stock</th>
+                           <th>Quantity</th>
+                           <th>Price Per Item</th>
+                           <th>Grand Total </th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for staff in purchase %}
+                        <tr class="hov" style="position: relative;">
+                           <td>
+                              <div class="inner-td">
+                                 #{{staff.billno}}
+                              </div>
+                           </td>
+                           <td>
+                              <div class="inner-td">
+                                 {{staff.time.date}}
+                              </div>
+                           </td>
+                           <td>
+                              <div class="inner-td">
+                                 {{staff.supplier}}
+                              </div>
+                           </td>
+                           <td>
+                              <div class="inner-td">
+                                 {% for item in staff.get_items_list %} {{ item.stock}} <br> {% endfor %}
+                              </div>
+                           </td>
+
+                           <td>
+                              <div class="inner-td">{% for item in staff.get_items_list %} {{ item.quantity }}
+                                 <br> {% endfor %}
+                              </div>
+                           </td>
+                           <td>
+                              <div class="inner-td">
+                                 {% for item in staff.get_items_list %} Ksh {{ item.perprice }}.00
+                                 <br> {% endfor %}
+
+                              </div>
+                           </td>
+                           <td id="total-pric" class="d-flex ">
+                              <div class="inner-td" style="position: absolute;bottom:10px">
+                                 <strong>{{staff.get_total_price }}</strong>
+                              </div>
+                           </td>
+                           <td>
+                              <div class="manage-btn">
+                                 <div>
+                                    <div id="myModal" class="modal fade">
+                                       <div class="modal-dialog modal-confirm">
+                                          <div class="modal-content">
+                                             <div class="modal-header flex-column">
+                                                <div class="icon-box">
+                                                   <i><span class="material-icons-sharp">
+                                                         close
+                                                      </span></i>
+                                                </div>
+                                                <h4 class="modal-title w-100">Are you sure?</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                   aria-hidden="true">&times;</button>
+                                             </div>
+                                             <div class="modal-body delete-popping">
+                                                <p>Do you really want to delete the
+                                                   <span>{{role}}</span>
+                                                   from records? This process cannot be undone.
+                                                </p>
+                                             </div>
+                                             <div class="modal-footer justify-content-center">
+                                                <button type="button" class="btn btn-secondary"
+                                                   data-dismiss="modal">Cancel</button>
+                                                <a href="" class=""><button type="button"
+                                                      class="btn btn-danger">Delete</button>
+                                                </a>
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="dropdown dropleft edit-table-me">
+                                    <button class="btn btn-sm btn-primary dropdown-toggle btn-manage mt-1" type="button"
+                                       id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                       aria-expanded="false">
+                                       <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                             <rect x="0" y="0" width="24" height="24"></rect>
+                                             <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                             <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                             <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                          </g>
+                                       </svg>
+                                    </button>
+
+                                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                       <a class="dropdown-item" href=""> <i class="fa fa-pencil-square-o pr-2"
+                                             aria-hidden="true"></i>
+                                          Edit</a>
+                                       <a href="{%  url  'delete-purchase1'  staff.billno %}" class="dropdown-item">
+                                          <i class="fa fa-trash-o pr-2" aria-hidden="true"></i>
+                                          Delete</a>
+
+                                       <a class="dropdown-item" href="{% url 'purchase-bill' staff.billno  %}">
+                                          <i class="fa fa-eye pr-2" aria-hidden="true"></i>
+                                          View</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              {% include 'Admin/delete_staff.html'%}
+
+                           </td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+                  <!-- table -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
+
+{% endblock %}

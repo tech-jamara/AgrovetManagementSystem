@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% if title %}
+  <title>Agrovet {{title}}</title>
+  {% else %}
+  <title>Agrovet</title>
+  {% endif %}
+  <link rel="icon" href="https://demo.arrowtheme.com/efarm/wp-content/themes/efarm/images/favicon.ico">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+  <link rel="stylesheet" href="{% static 'pluginss/fontawesome-free/css/all.min' %}" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{% static 'pluginss/datatables-bs4/css/dataTables.bootstrap4.min.css'%}" />
+  <link rel="stylesheet" href="{% static 'pluginss/datatables-responsive/css/responsive.bootstrap4.min.css'%}" />
+  <link href="{% static 'pluginss/select-2/select2.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="http://127.0.0.1:5500/assets/vendor/nucleo/css/nucleo.css">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/Navbar/sidebarEdited.css' %}" />
+  <script src="https://kit.fontawesome.com/388fcf27a9.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <main>{% block agrovet %} {% endblock %}</main>
+  <script src="{% static 'pluginss/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'pluginss/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'pluginss/datatables/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'pluginss/datatables-bs4/js/dataTables.bootstrap4.js'%} "></script>
+  <script src="{% static 'pluginss/datatables-responsive/js/dataTables.responsive.min.js'%} "></script>
+  <script src="{% static 'pluginss/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'pluginss/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'pluginss/datatables-buttons/js/buttons.print.js'%}"></script>
+
+  <script src="{% static 'js/main.js'%}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="{% static 'dist/js/adminlte.js'%}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  {% block myjs %}
+  {% endblock myjs %}
+  {% block myjs2 %}
+  {% endblock myjs2 %}
+</body>
+
+</html>

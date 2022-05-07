@@ -1,0 +1,150 @@
+{% extends 'Admin/base_admin.html' %}{% block content %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style='padding-top:20px !important'>
+    <section class="content  col-11">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="invoice mb-3">
+                        <div class="row">
+                            <div class="col-sm-12 d-flex justify-content-between">
+                                <h4>
+                                    <a href="#" class=" logo d-flex">
+                                        <img src="https://assets.website-files.com/5f186b75b647cf7c841cecae/5f24ae572480e11d05e46dbd_webclip-farm-template.svg"
+                                            alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                                            style='width:25px' />
+                                        <span class="brand-text pl-2">
+                                            <h5 class="text-black mt-3 "
+                                                style="color:black;font-size:15px;font-weight:700;">AGR<span
+                                                    class="danger ">OFLY</span> Kenya</h5>
+                                        </span>
+                                    </a>
+                                </h4>
+
+                                <h4 class="mt-3" style="font-size:18px;font-weight:600;">Purchase Order <br>
+                                    <span style="font-size:15px;font-weight:500;">{{bill.time}}</span>
+                                </h4>
+                            </div>
+                            <div class="col-sm-6 invoice-col "
+                                style="display: flex !important;flex-direction:column;justify-content:flex-end;align-items:flex-end;">
+                            </div>
+                        </div>
+                        <div class=" row invoice-info my-4">
+                            <div class="col-sm-6 invoice-col">
+                                <h4>Supplier</h4>
+                                <address>
+                                    <p>To</p>
+                                    <p><strong>{{bill.supplier.name}}</strong>
+                                    </p>
+                                    <p>Address: {{bill.supplier.address}}</p>
+                                    <p>Phone: +{{bill.supplier.phone}}</p>
+                                    <p>Email: {{bill.supplier.email}}</p>
+                                </address>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6 invoice-col"
+                                style="display: flex !important;flex-direction:column;justify-content:flex-end;align-items:flex-end;">
+                                <h5>Agrovet</h5>
+
+                                <address>
+                                    <p>From</p>
+                                    <p><strong>{{user.first_name}} {{user.last_name}}</strong></p>
+                                    <p>Address: {{user.sysadmin.address}}</p>
+                                    <p>Phone: +{{user.sysadmin.mobile}}</p>
+                                    <p>Email: {{user.email}}</p>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Product</th>
+                                            <th>Description</th>
+                                            <th>Qty</th>
+                                            <th>Unit Price</th>
+                                            <th>Sub Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in items %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{item.stock.stock_name}}</td>
+                                            <td>{{item.stock.category}}</td>
+                                            <td>x{{item.quantity}}</td>
+                                            <td> Ksh {{ item.perprice }}.00
+                                            </td>
+                                            <td> {{item.total}}</td>
+                                            <td></td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+
+                            </div>
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <table class="table pritable" style="color:rgb(0, 0, 0);">
+                                        <tr>
+                                            <th style="width:40%">Sub Total:</th>
+                                            <td
+                                                style="display: flex !important;flex-direction:column;align-items:flex-start;margin-left:40px;">
+                                                <h6 class="">{{bill.get_total_price }}</h6>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:40%">VAT (16%):</th>
+                                            <td
+                                                style="display: flex !important;flex-direction:column;align-items:flex-start;border:none !important;margin-left:25px">
+                                                <h6 class="pl-3">{{bill.get_subTax }}</h6>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:40%">Shipping (5%):</th>
+                                            <td
+                                                style="display: flex !important;flex-direction:column;align-items:flex-start;border:none !important;margin-left:40px;">
+                                                <h6 class="">{{bill.get_shipping }}</h6>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:40%">Total:</th>
+                                            <td
+                                                style="display: flex !important;flex-direction:column;align-items:flex-start;margin-left:40px;">
+                                                <h6 class=""> <strong>{{bill.get_alltotal }}</strong></h6>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-print">
+                            <div class="col-12">
+                                <a href="" rel="noopener" class=" btn btn-default noPrint" onclick="window.print();"><i
+                                        class="fas fa-print"></i> Print</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

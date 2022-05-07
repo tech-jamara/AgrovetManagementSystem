@@ -1,0 +1,30 @@
+{% extends 'veterinarian/base_vet.html' %}{% block content %}
+
+
+<div class="content-wrapper agro-form">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-info">
+                    <div class="card-header ">
+                        <h5 class="card-titl ">Select Suppier</h5>
+                        <p>Please select a supplier to purchase stock from</p>
+                    </div>
+                    <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="input-group input-sel ">
+                               
+                                {{form.supplier}}
+                            
+                            </div>
+                        </div>
+                </div>
+                <input type="submit" class="btn  btn-sm btn-info ml-3 mb-4 px-4 mysubmit-me">
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,259 @@
+{% extends 'Admin/base_admin.html' %}
+{% block content %}
+
+<div class="content-wrapper agro-form">
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12 px-4">
+                <div class="card card-info">
+                    {% include 'Admin/alert_popup.html'%}
+
+                    <div class="card-header pl-4 ">
+                        <h5 class="card-title ">{{title}}</h5>
+
+                    </div>
+
+                    <form method="POST" style="font-size:13px;" id="myform" class='px-3 py-2' action="{{ action_path }}"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% comment %} {% include 'hod_templates/alert_messeges.html'%} {% endcomment %}
+
+                        <div class="card-body form-deco">
+                            <h5>User Information</h5>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <div class="input-group input-user ">
+
+                                            <input type="text" class="form-control" name="username"
+                                                placeholder="Username" id="id_username">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <div class="input-group">
+
+                                            </span>
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <div class="input-group">
+
+                                            <input type="text" class="form-control" name="first_name"
+                                                placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <div class="input-group">
+
+                                            <input type="text" class="form-control" name="last_name"
+                                                placeholder=" Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <h5>Contact Information</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <label>Email address</label>
+                                        <div class="input-group input-email ">
+
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder=" Enter email" id="id_email">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <div class="input-group input-phones">
+
+                                            <input type="text" class="form-control" id="myform_phone" name="mobile"
+                                                placeholder="Phone Number" id="id_phone" />
+
+                                        </div>
+                                        <div id="phone_error2" class="error hidden"> Please enter a phone number
+                                        </div>
+                                        <div id="phone_error" class="error hidden"> Please enter a valid phone
+                                            number : 2547xxxxxxxx
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{form}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <input type="button" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                                data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    </form>
+                    {% include 'Admin/submit_btn.html'%}
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .error {
+        color: red;
+        size: 80%
+    }
+
+    .hidden {
+        display: none
+    }
+</style>
+
+
+
+
+
+
+{% endblock %}
+{% block myjs %}
+
+<script>
+    $(document).ready(function () {
+        //phone number vlidation using Regex
+        function validatePhoneNumber(input_str) {
+            var re = /^(2547)([0-9|7])(\d){7}$/; //Kenya Safaricom 
+
+            return re.test(input_str);
+        }
+        function validateForm(event) {
+            var phone = document.getElementById('myform_phone').value;
+            if (!validatePhoneNumber(phone)) {
+
+                document.getElementById('phone_error').classList.remove('hidden');
+
+            } else {
+                document.getElementById('phone_error').classList.add('hidden');
+                return false
+            }
+            event.preventDefault();
+        }
+        document.getElementById('myform').addEventListener('submit', validateForm);
+
+        //check if mobile field is emplty
+        function CheckPhoneValidation(event) {
+            var phone = document.getElementById('myform_phone').value;
+            if (phone == '') {
+
+                document.getElementById('phone_error2').classList.remove('hidden');
+
+            } else {
+                document.getElementById('phone_error2').classList.add('hidden');
+                return false
+            }
+            event.preventDefault();
+        }
+        document.getElementById('myform').addEventListener('submit', CheckPhoneValidation);
+
+
+        // keyup event will be triggered when user leaves keyboard
+        $("#id_email").keyup(function () {
+            var email = $(this).val();
+
+            if (email != "") {
+                $.ajax({
+                    url: "{% url 'check_email_exist' %}",
+                    type: 'POST',
+                    data: { email: email }
+                })
+                    .done(function (response) {
+                        //console.log(response);
+
+                        if (response == "True") {
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: red; padding: 5px; font-weight: 500;'> Email Not Available. </span>").insertAfter(".input-email")
+                        }
+                        else {
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: green; padding: 5px; font-weight: 500;'> Email Available. </span>").insertAfter(".input-email")
+                        }
+                    })
+
+                    .fail(function () {
+                        console.log("Failed");
+                    })
+            }
+            else {
+                $(".email_error").remove();
+            }
+
+        })
+
+        $("#id_username").keyup(function () {
+            var username = $(this).val();
+
+            if (username != "") {
+                $.ajax({
+                    url: "{% url 'check_username_exist' %}",
+                    type: 'POST',
+                    data: { username: username }
+                })
+                    .done(function (response) {
+                        if (response == "True") {
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: 500;'> Username Not Available. </span>").insertAfter(".input-user")
+                        }
+                        else {
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: 500;'> Username Available. </span>").insertAfter(".input-user")
+                        }
+                    })
+
+                    .fail(function () {
+                        console.log("Failed");
+                    })
+            }
+            else {
+                $(".username_error").remove();
+            }
+
+        })
+    })
+</script>
+{% endblock myjs%}

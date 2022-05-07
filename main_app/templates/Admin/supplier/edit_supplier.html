@@ -1,0 +1,70 @@
+{% extends 'Admin/base_admin.html' %}{% load crispy_forms_tags %}{% block content %}
+<div class="content-wrapper agro-form">
+
+    <section class="content">
+        {% include 'Admin/alert_popup.html'%}
+
+        <div class="row">
+            <div class="col-md-12 px-4">
+
+                <div class="card card-info">
+                    <div class="card-header pl-4 ">
+                        <h5 class="card-title ">EDIT SUPPLIER</h5>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data" action="{{ action_path }}" style="font-size:13px;"
+                        class='px-3 py-2'>
+                        {% csrf_token %}
+                        <div class="card-body form-deco custom-form1">
+                            <h5>User Information</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Supplier Name</label>
+                                        {{form.name|as_crispy_field}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Supplier Email</label>
+
+                                        {{form.email|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        {{form.address|as_crispy_field}}
+                                    </div>
+                                </div>
+                             
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pic-select">
+                                    <div class="form-group">
+                                        <label>Safaricom Phone Number</label>
+                                        {{form.phone|as_crispy_field}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Other Phone Number</label>
+                                        {{form.phone_2|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <input type="button" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                                data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    </form>
+                    {% include 'Admin/submit_btn.html'%}
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

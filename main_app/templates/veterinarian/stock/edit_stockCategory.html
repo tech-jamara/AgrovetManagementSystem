@@ -1,0 +1,21 @@
+{% extends 'veterinarian/base_vet.html' %}{% load crispy_forms_tags %} {% block content %}
+<div class="content-wrapper agro-form">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12 pb-4">
+        {% include 'veterinarian/alert_popup.html'%}
+        <div class="card card-info">
+          <div class="card-header">
+            <h5 class="card-title">Edit Agrovet Category</h5>
+          </div>
+          <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+            {% csrf_token %}
+            {{form.name|as_crispy_field}}
+        </div>
+        <input type="submit" class="btn  btn-sm btn-info ml-3  px-4 mysubmit-me">
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock%}

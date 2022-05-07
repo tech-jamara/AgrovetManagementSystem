@@ -1,0 +1,51 @@
+{% extends 'Admin/base_admin.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row mx-3">
+        <div class="col-md-12 admin2-profile mt-3 ">
+
+
+            <div class="card more-pro">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm order-2 order-sm-1">
+                            <div class="d-flex align-items-start mt-3 mt-sm-0">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar-xl me-3">
+                                        <img src="{{user.sysadmin.profile_pic.url}}" alt="" class="its-me-img2 mr-2 mr-3" >
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 mt-3">
+                                    <div>
+                                        <h5 class="font-size-16 mb-1">{{user.first_name}} {{user.last_name}}</h5>
+                                        <p class="text-muted font-size-13">System Admin</p>
+
+                                        <div class=" text-muted font-size-13">
+                                            <div><i class=""></i><strong>Phone:</strong> +{{user.sysadmin.mobile}}</div>
+                                            <div><i class=""></i> <strong>Email:</strong> {{user.email}}</div>
+                                            <div><i class=""></i><strong>Address:</strong> {{user.sysadmin.address}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs-custom card-header-tabs border-top mt-4" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 btn btn-sm btn-success mt-2" data-bs-toggle="tab" href="{% url 'edit-profile' %}" style="color: rgb(255, 255, 255);">Edit Profile</a>
+                        </li>
+                      
+                    </ul>
+                </div>
+                <!-- end card body -->
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'Admin/base_admin.html' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="col-12 ">
+            <div class="card">
+                <div class="card-header " style="background: #74c974; ">
+                    <h5 class="card-title" style="color:#fff;">
+                        {{stock.stock_name}}
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-5">
+            <div class="row pb-5">
+
+                <div class="col-md-4">
+                    <div class="pt-3 pl-2 stock-view">
+                        <h6> <span>Stock Name: </span>{{stock.stock_name}} </h6>
+                        <hr>
+                        <h6> <span>Quantity: </span>{{stock.quantity}} </h6>
+                        <hr>
+                        <h6> <span> First Stocked: </span>{{stock.created_at}} </h6>
+                        <hr>
+                        <h6> <span>Last updated: </span>{{stock.updated_at}} </h6>
+                        <hr>
+                        <h6> <span> Valid from: </span>{{stock.valid_from}} </h6>
+                        <hr>
+                        <h6> <span> Valid to: </span>{{stock.valid_to}} </h6>
+                        <hr>
+                        <h6> <span> Description: </span>{{stock.stock_description}} </h6>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="">
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class=" ">
+                        {% if stock.stock_pic.url == true %}
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk9mi35OpsXczuA9TnZ-SmJIkagXjOtZrFkg&usqp=CAU"
+                            alt="" class="stock-img  ">
+                        {% else %}
+                        <img src="{{stock.stock_pic.url}}" alt="" class="stock-img  ">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

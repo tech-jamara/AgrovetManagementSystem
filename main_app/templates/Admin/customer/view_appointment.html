@@ -1,0 +1,106 @@
+{% extends 'Admin/base_admin.html' %} {% load crispy_forms_tags %}
+{% block content %}
+<div class="content-wrapper agro-form">
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          {% include 'Admin/alert_popup.html'%}
+  
+          <div class="card card-info">
+            <div class="card-header">
+              <h5 class="card-title">{{staffs.customer}}CUSTOMER APPONMENT</h5>
+            </div>
+                  <div class="card-body form-deco custom-form1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                  
+               <div class="row mt-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">CUSTOMER ADDRESS</label>
+                    <input type="text" value="{{staffs.address}}" readonly style="border: 1px solid white;">
+                  </div>
+              </div>
+                <div class="col-md-6">
+                 <div class="form-group">
+                   <label for="">REASON FOR APPOINTMENT</label>
+                   <input type="text" value="{{staffs.reason}}" readonly style="border: 1px solid white;">
+                 </div>
+             </div>
+         </div>
+          
+                 
+                    <div class="row mt-3">
+                      <div class="col-md-6">
+                       <div class="form-group">
+                        <label for="">APPOINTMENT DATE</label>
+                     <input type="text" value="  {{staffs.date_to.date}}"readonly  style="border: 1px solid white;" >
+                         
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                     <label for="">APPOINTMENT TIME</label>
+                    <input type="text" value="  {{staffs.appointmentTime}}" readonly style="border: 1px solid white;" >
+                      
+                    </div>
+                </div>
+               </div>
+              
+               <div class="row mt-2">
+                <div class="col-md-6">
+                  <label for="">DESCRIPTION</label>
+    
+                  <div class="form-group">
+                    <textarea name="" id="" readonly cols="70" rows="13">{{staffs.description}}</textarea>
+                  </div>
+             </div>
+                <div class="col-md-6">
+                 <div class="form-group">
+                  <label for="">IMAGE OF ANIMAL</label>
+
+                    <div class="d-flex justify-content-start">
+                     <img src="{{staffs.pic}}"  alt="" style="width: 500px;  height:280px ; border-radius:10px">
+                    </div>
+                   
+                 </div>
+             </div>
+          
+                    <hr>
+                </div>
+                <div class="">
+                  <a href="">
+                    <input type="submit" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                    data-toggle="modal" data-target=".bd-example-modal-sm" value="Back">
+
+                  </a>
+                  
+                </div>
+             
+        </div>
+      </div>
+    </section>
+</div>
+<style>
+  input:focus{
+    border: none !important;
+    outline: none !important;
+  }
+  textarea{
+    background-color: #e9e8e8 !important;
+    border: none !important;
+    border-radius: 5px;
+    text-indent: 15px;
+    outline: none !important;
+
+  }
+textarea:focus{
+    border: none !important;
+    outline: none !important;
+  }
+</style>
+{% endblock %}

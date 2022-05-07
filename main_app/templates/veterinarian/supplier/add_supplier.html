@@ -1,0 +1,83 @@
+{% extends 'veterinarian/base_vet.html' %}{% load crispy_forms_tags %}{% block content %}
+<div class="content-wrapper agro-form">
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12 px-4">
+                <div class="card card-info">
+                    {% include 'veterinarian/alert_popup.html'%}
+
+                    <div class="card-header pl-4 ">
+                        <h5 class="card-title ">{{title}}</h5>
+
+                    </div>
+
+
+                    <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+                        {% csrf_token %}
+                        {% comment %} {% include 'hod_templates/alert_messeges.html'%} {% endcomment %}
+
+                        <div class="card-body form-deco custom-form1">
+                            <h5>User Information</h5>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Company Name</label>
+
+                                        {{form.name|as_crispy_field}}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+
+                                        {{form.email|as_crispy_field}}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <h5>Contact Information</h5>
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        {{form.address|as_crispy_field}}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Safaricom Phone Number</label>
+
+                                        {{form.phone|as_crispy_field}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Telephone</label>
+
+                                        {{form.phone_2|as_crispy_field}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+
+                        </div>
+                        <div class="">
+                            <input type="button" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                                data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    </form>
+                    {% include 'veterinarian/submit_btn.html'%}
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

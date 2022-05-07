@@ -1,0 +1,190 @@
+{% extends 'Admin/base_admin.html' %}{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="content-wrapper agro-form setprice">
+    <form method="post" class="panel panel-default px-3 py-2 ">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-12 px-4">
+
+                <div class="card card-info  px-3 py-2 " style="border-radius: 20px;">
+                    <div class="card-header">
+                        <h5>SELL STOCK TO CUSTOMER</h5>
+                    </div>
+
+                    <div class="card-body form-deco custom-form1">
+                        <h5>User Information</h5>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Customer Name</label>
+
+                                    {{formset.customer_name|as_crispy_field}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+
+                                    {{formset.email|as_crispy_field}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <h5>Contact Information</h5>
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    {{formset.address|as_crispy_field}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Safaricom Phone Number</label>
+
+                                    {{formset.saf_phone|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Telephone</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="row">
+            <div class="col-md-12 px-4">
+                <div class="card card-info" style="border-radius: 10px;">
+
+
+                    <div class="card-header">
+                        <div class="panel-heading panel-heading-text">Purchase a Product </div>
+                    </div>
+
+                    <div id="stockitem" class="p-2 mt-4">
+                        <div class=" panel-body">
+                            <div class="row form-row">
+                                <div class="form-group col-md-4">
+                                    {{ form.product.errors }}
+
+                                    {{ form.product|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <!-- <label class="panel-body-text">Price per item{Ksh):</label> -->
+                                    {{ form.perprice|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group ">
+                                        <!-- <label class="panel-body-text">Quantity:</label> -->
+                                        {{ form.quantity|as_crispy_field }}
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group col-md-3">
+                                    <label class="panel-body-text">Price(Ksh):</label>
+                                    <input type="text" style="border: none;font-weight:800"
+                                        class="textinput form-control totalprice" value="0.00" disabled required>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <input type="button" class="btn btn-sm px-3  py-2 btn-info ml-2 mb-4 mysubmit-me"
+                        data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    {% include 'Admin/submit_btn.html'%}
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+{% endblock content %}
+
+{% block myjs%}
+
+<script>
+    var stocks = [
+    {% for stock in stocks %}
+        {% if not forloop.first %},{% endif %}
+        {
+            pk          : {{ stock.pk }},
+            quantity    : {{ stock.quantity }}
+        }
+    {% endfor %}
+ ];
+
+   
+    console.log(stocks)
+    //updates the total price by multiplying 'price per item' and 'quantity' 
+    $(document).on('change', '.setprice', function (e) {
+        e.preventDefault();
+        //gets the values
+        var element = $(this);
+        var stock = element.parents('.form-row').find('.stock').val();
+        var quantity = element.parents('.form-row').find('.quantity').val();
+        var perprice = element.parents('.form-row').find('.price').val();
+        //checks if stocks are available
+        stocks.forEach(function (stockSummary, i) {
+            var pk = stocks[i].pk;
+            var squantity = stocks[i].quantity;
+            if (stock == pk) {
+                //checks if ordered stock is more than available stock
+                if (quantity > squantity) {
+                    quantity = quantity - 1;
+                    if (quantity <= 1) {
+                        //no stocks are available. Attempts to delete field
+                        alert('Stocks are currently unavailable. Field will be removed;');
+                        //Sets quantity to 0 as failsafe for when the total no of item forms are 1
+                        element.parents('.form-row').find('.quantity').val(0);
+                        deleteForm('form', element);
+                    } else {
+                        element.parents('.form-row').find('.quantity').val(squantity - 1);
+                        quantity = squantity - 1;
+                        alert('Exceeded current stock available');
+                    }
+                }
+            }
+        });
+        //calculates the total
+        var tprice = quantity * perprice;
+        //sets it to field
+        element.parents('.form-row').find('.totalprice').val(tprice);
+        return false;
+    });
+
+</script>
+
+{% endblock myjs%}

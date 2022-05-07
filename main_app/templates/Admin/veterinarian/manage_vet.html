@@ -1,0 +1,141 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+<div class="content-wrapper " style='padding-top:20px !important'>
+  <section class="content manage-content">
+    {% include 'Admin/alert_popup.html'%}
+
+    <div class="form-group">
+      <div class="col-12  m-auto">
+        <div class="row oyaah">
+
+          <div class="col-md-12 rr">
+            <div class="card card-primary sc">
+              <div class="card-header">
+                <h5 class="">MANAGE VETERINARIAN</h5>
+                <div class="card-tools d-flex">
+                  <div></div>
+
+                  <a class="add-manager"> </a>
+                </div>
+              </div>
+            </div>
+            <table class="table" id="plist">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+
+                  <th>UserName</th>
+
+                  <th>Address</th>
+
+                  <th>Mobile</th>
+
+                  <th>last Login</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for staff in staffs %}
+                <tr class="hov">
+                  <td>
+                    <div class="inner-td">#{{staff.id}}</div>
+                  </td>
+                  <td class="d-flex">
+                    {% if staff.profile_pic == '' %}
+                    <img src="https://www.pngkey.com/png/full/115-1150152_default-profile-picture-avatar-png-green.png"
+                      alt="" class="brand-image img-circle elevation-3 rounded-circle" width="25">
+                    {% else %}
+                    <img src="{{staff.profile_pic}}" class="brand-image img-circle elevation-3 rounded-circle"
+                      width="25" alt="" />
+                    {% endif %}
+                    <div class="d-flex  text-left flex-column ml-3">
+                      <h4 class="name-st">{{staff.admin.first_name}} {{staff.admin.last_name}}
+                      </h4>
+
+                      <div class="email-st">
+                        <p>{{staff.admin.email}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="inner-td">
+                      {{staff.admin.username}}
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    <div class="inner-td">
+
+                      {{staff.address}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="inner-td">
+                      +{{staff.mobile}}
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="inner-td">
+                      {{staff.admin.last_login}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="manage-btn">
+                      <div>
+
+                      </div>
+                      <div class="dropdown dropleft edit-table-me">
+                        <button class="btn btn-sm btn-primary dropdown-toggle btn-manage mt-1" type="button"
+                          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <rect x="0" y="0" width="24" height="24"></rect>
+                              <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                              <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                              <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                            </g>
+                          </svg>
+                        </button>
+
+                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="{% url 'edit-vet1' staff.admin.id %}">
+                            <i class="fa fa-pencil-square-o pr-2" aria-hidden="true"></i>
+                            Edit</a>
+                          <a href="{% url 'delete-vet1' staff.id  %}" class="dropdown-item">
+                            <i class="fa fa-trash-o pr-2" aria-hidden="true"></i>
+                            Delete</a>
+
+                          <a class="dropdown-item" href="{% url 'view-vet1' staff.admin.id  %}">
+                            <i class="fa fa-eye pr-2" aria-hidden="true"></i>
+                            View</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- {% include 'Admin/delete_staff.html'%} -->
+
+          </div>
+          </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+
+          </table>
+          <a href="{% url 'add-vet1' %}">
+            <p class="plus"><span class="material-icons-sharp"> add </span>
+            </p>
+          </a>
+
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+<script>
+
+</script>
+{% endblock %}
+</div>

@@ -1,0 +1,118 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+<div class="content-wrapper">
+   <section class="content manage-content">
+      {% include 'Admin/alert_popup.html'%}
+
+      <div class="form-group">
+         <div class="col-12">
+            <div class="row">
+
+               <div class="col-md-12">
+                  <div class="card card-primary sc">
+                     <div class="card-header">
+                        <h5>Manage Sales</h5>
+                       
+                        <div class="card-tools d-flex">
+                           <div></div>
+
+                           <a class="add-manager"> </a>
+                        </div>
+                     </div>
+                  </div>
+                  <table class="table" id="plist">
+                     <thead>
+                        <tr>
+                           <th>#</th>
+                           <th>Supplier</th>
+                           <th>Email</th>
+
+                           <th>Stock</th>
+                           <th>Date Purchased</th>
+
+                           <th>Quantity</th>
+                           <!-- <th>Price Per Item</th> -->
+                           <th>Total Price</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for staff in sales %}
+                        <tr class="hov ">
+                           <td>
+                              <div class="inner-td">#{{staff.billno}}</div>
+
+                           </td>
+
+                           <td>
+                              <div class="inner-td">{{staff.customer_name}}</div>
+                           </td>
+                           <td>
+                              <div class="inner-td">{{staff.email}}</div>
+                           </td>
+
+                           <td>
+                              <div class="inner-td">{% for item in staff.get_items_list %} {{ item.product}}
+                                 <br> {% endfor %}
+                              </div>
+                           </td>
+                           <td>
+                              <div class="inner-td">{{staff.time.date}}</div>
+                           </td>
+
+                           <td>
+                              <div class="inner-td">{% for item in staff.get_items_list %} {{ item.quantity }}
+                                 <br> {% endfor %}
+                              </div>
+                           </td>
+
+                           <!-- <td>
+                              <div class="inner-td">{{staff.get_item_price}}</div>
+                           </td> -->
+                           <td id="total-pric">
+                              <div class="inner-td"><strong>{{ staff.get_total_price }}</strong></div>
+                           </td>
+                           <td>
+                              <div class="manage-btn">
+                            
+                                 <div class="dropdown dropleft edit-table-me">
+                                    <button class="btn btn-sm btn-primary dropdown-toggle btn-manage mt-1" type="button"
+                                       id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                       aria-expanded="false">
+                                       <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                             <rect x="0" y="0" width="24" height="24"></rect>
+                                             <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                             <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                             <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                          </g>
+                                       </svg>
+                                    </button>
+
+                                    <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                       <a href="{% url 'delete-sales1' staff.billno %}" class="dropdown-item" >
+                                          <i class="fa fa-trash-o pr-2" aria-hidden="true"></i>
+                                          Delete</a>
+                                       <a class="dropdown-item" href="#">
+                                          <i class="fa fa-eye pr-2" aria-hidden="true"></i>
+                                          View</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              {% include 'Admin/delete_staff.html'%}
+
+                           </td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+
+   </script>
+
+   {% endblock %}
+</div>

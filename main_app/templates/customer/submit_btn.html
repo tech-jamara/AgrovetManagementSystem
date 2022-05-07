@@ -1,0 +1,33 @@
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md p-5 modal-dialog-centered">
+        <div class="modal-content popup-confirm">
+
+            <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog"
+                aria-live="assertive" aria-modal="true" style="display: flex">
+                <div class="swal2-content pb-2">
+                    <div id="swal2-content" class="swal2-html-container" style="display: block">
+                        Please confirm the form submission.
+                    </div>
+                    <input class="swal2-input" style="display: none" />
+                    <input type="file" class="swal2-file" style="display: none" />
+                </div>
+            </div>
+
+
+            <div class="swal2-actions pb-4 pt-2">
+                <div class="swal2-loader"></div>
+                <button type="submit" class="swal2-confirm btn fw-bold btn-info confirm-sub" aria-label=""
+                    style="display: inline-block">
+                    Yes, submit!
+                </button>
+                <button type="button" class="swal2-cancel btn fw-bold btn-secondary ml-3 px-3" aria-label=""
+                    data-dismiss="modal" style="display: inline-block">
+                    No, cancel
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

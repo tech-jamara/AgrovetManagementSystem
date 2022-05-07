@@ -1,0 +1,67 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+<div class="content-wrapper" style='padding:20px !important'>
+    <div class=" card p-3">
+        <div class="card-aside-wrap">
+            <div class="card-content">
+                <div class="card-inner">
+                    <div class="nk-block">
+                        <div class="nk-block-head">
+                            <h5 class="title">Personal Information</h5>
+                        </div>
+                        <div class="profile-ud-list">
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Username</span><span
+                                        class="profile-ud-value">{{staffs.admin.username}}</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Full Name</span><span
+                                        class="profile-ud-value">{{staffs.admin.first_name}}
+                                        {{staffs.admin.last_name}}</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Mobile Number</span><span
+                                        class="profile-ud-value">+{{staffs.mobile}}</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Email Address</span><span
+                                        class="profile-ud-value">{{staffs.admin.email}}</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Profile Image</span><span
+                                        class="profile-ud-value"><img src="{{staffs.profile_pic}}" alt=""
+                                            style="width:100px"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block">
+                        <div class="nk-block-head nk-block-head-line">
+                            <h6 class="title overline-title text-base">Additional Information</h6>
+                        </div>
+                        <div class="profile-ud-list">
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Joining Date</span><span
+                                        class="profile-ud-value">{{staffs.created_at}}</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Reg Method</span><span
+                                        class="profile-ud-value">Email</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Country</span><span
+                                        class="profile-ud-value">Kenya</span></div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider"><span class="profile-ud-label">Nationality</span><span
+                                        class="profile-ud-value">Kenyan</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

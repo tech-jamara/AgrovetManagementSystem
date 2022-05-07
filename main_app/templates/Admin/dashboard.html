@@ -1,0 +1,223 @@
+{% extends 'Admin/base_admin.html' %} {% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <section class="content-header dash-nav">
+    <div class="container-fluid">
+      <div class="row ">
+        <div class="col-sm-6">
+          <h1>
+            Dashboard
+          </h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Navbar & Tabs</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content-dash">
+    <div class="row">
+      <div class="col-md-5 ">
+
+        <div class="card overflow-hidden welc ">
+          <div class="bg-primary bg-soft">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-3">
+                  <h5 class="text-primary">Welcome Back !</h5>
+                  <p><span style="text-transform: capitalize;">{{user.username}} </span> <br> </p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="https://themesbrand.com/skote-mvc/layouts/assets/images/profile-img.png" alt=""
+                  class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card-body pt-0">
+            <div class="row"> -->
+          <!-- <div class="col-sm-4">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <img src="https://themesbrand.com/skote-mvc/layouts/assets/images/users/avatar-1.jpg" alt=""
+                    class="img-thumbnail rounded-circle">
+                </div>
+                <h5 class="font-size-15 text-truncate">{{user.first_name}} {{user.last_name}} </h5>
+                <p class="text-muted mb-0 text-truncate">Customer</p>
+              </div> -->
+          <!-- 
+              <div class="col-sm-8">
+                <div class="pt-4">
+
+                  <div class="row">
+                    <p style="margin-bottom: 0 !important ;padding-left:5px;">Lorem ipsum dolor sit amet consectetur.
+                    </p>
+                  </div>
+                  <div class="mt-3">
+                    <a href="" class="btn btn-primary  welc-btn ">View Profile <i
+                        class="fa fa-arrow-right ms-1"></i></a>
+                  </div>
+                </div>
+              </div> -->
+          <!-- </div>
+          </div> -->
+        </div>
+      </div>
+     
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-6 mycard1 ">
+            <div class="card ">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-2">Total Sales Today</h5>
+                    <span class="h2 font-weight-bold mb-0 disp pt-3">{{total_sales}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-red rounded-circle shadow">
+                      <i class="fa fa-line-chart" aria-hidden="true"></i>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- <p class="mt-3 mb-0 text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mycard1">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-2">Total Stock</h5>
+                    <span class="h2 font-weight-bold mb-0 disp ">{{total_stock}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-orange rounded-circle shadow">
+                      <i class="fa fa-pie-chart" aria-hidden="true"></i>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- <p class="mt-3 mb-0 text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p> -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class=" col-md-6 mycard1 ">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-2">Purcahses made Today</h5>
+                    {%for purchases in pur %}
+
+                    <span class="h2 font-weight-bold mb-0 " id="carr2" style="font-size: 15px;">{{purchases.sum}}</span>
+
+                    {% endfor %}
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-green  rounded-circle shadow">
+                      <i class="fa fa-money" aria-hidden="true"></i>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- <p class="mt-3 mb-0 text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p> -->
+              </div>
+            </div>
+          </div>
+          <div class=" col-md-6 mycard1">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-2">Expired Stock</h5>
+                    <span class="h2 font-weight-bold mb-0 disp ">{{expired_total}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-info  rounded-circle shadow">
+                      <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- <p class="mt-3 mb-0 text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 my-backg">
+      <div class="card ticket-bx">
+
+        <div class="card-body">
+          <div class="d-sm-flex d-block  align-items-end">
+            <div class="mr-auto pr-3 mb-2 mb-sm-0">
+              <span class="d-block mb-sm-3 mb-2 text-light">Total
+                Sales Today
+              </span>
+              {%for purchases in moy %}
+              <span class=" text-light font-weight-bold money-sales" id="carr">
+                {{purchases.sum}}</>
+                {% endfor %}
+            </div>
+
+          </div>
+          <!-- <div>
+            <img src="https://d2kpqch85ox6qf.cloudfront.net/xhtml/images/dual-dot.png" alt="" class=" dot-img">
+          </div>
+          <p class="fs-12 sale-par">
+            Sales reps serve as the point of contact between a business and its prospects or clients and have a range
+            and educating prospective</p>
+          <a class="text-light" href="{% url 'manage-sale1' %}">View detail<i class="fa fa-long-arrow-right ml-2"
+              style="color: rgb(255, 255, 255);"></i>
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<style>
+  .enMoney::before {
+    content: "Ksh ";
+  }
+
+  .negMoney {
+    color: red;
+  }
+
+  div.negMoney::before {
+    content: '(Ksh';
+  }
+
+  div.negMoney::after {
+    content: ')';
+  }
+</style>
+{% endblock %}

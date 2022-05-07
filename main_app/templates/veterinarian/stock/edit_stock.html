@@ -1,0 +1,77 @@
+{% extends 'veterinarian/base_vet.html' %}{% load crispy_forms_tags %}{% block content %}
+<div class="content-wrapper agro-form">
+
+    <section class="content">
+        {% include 'veterinarian/alert_popup.html'%}
+
+        <div class="row">
+            <div class="col-md-12 px-4">
+
+                <div class="card card-info">
+                    <div class="card-header pl-4 ">
+                        <h5 class="card-title ">{{title}}</h5>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data" action="{{ action_path }}" style="font-size:13px;"
+                        class='px-3 py-2'>
+                        {% csrf_token %}
+                        <div class="card-body form-deco custom-form1">
+                            <h5>User Information</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Stock Name</label>
+                                        {{form.stock_name|as_crispy_field}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.category|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Stock Quantity</label>
+                                        {{form.quantity|as_crispy_field}}
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Stock Quantity</label>
+                                        {{form.quantity|as_crispy_field}}
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pic-select">
+                                    <div class="form-group">
+                                        <label>Stock Description</label>
+                                        {{form.stock_description|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        {{form.stock_pic|as_crispy_field}}
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <input type="button" class="btn btn-sm px-3 btn-info ml-4 mb-4 mysubmit-me"
+                                data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit form">
+                    </form>
+                    {% include 'veterinarian/submit_btn.html'%}
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
